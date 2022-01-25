@@ -1,0 +1,46 @@
+<!-- Tutorial by Music and Coding on YouTube -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <!-- link css file -->
+        <link rel="stylesheet" href="./styles.css">
+        <title>Fretboard</title>
+    </head>
+    <body>
+        <div class="settings">
+            <div class = "instrument-select selector">
+                <label for="instrument-selector">Selected instrument:</label>
+                <!-- drop down -->
+                <select name="instrument-selector" id="instrument-selector"></select>
+            </div>
+            <div class="accidental-selector selector">
+                <input type="radio" class="acc-select" id="sharps" name="accidentals" value="sharps" checked>
+                <label for="flats">♯</label>
+                <input type="radio" class="acc-select" id="flats" name="accidentals" value="flats">
+                <label for="flats">♭</label>
+            </div>
+
+            <div class = "num-frets-selector selector">
+                <label for="number-of-frets">Number of frets: </label>
+                <input type="number" id="number-of-frets" min="5" max="24" value = "12">
+            </div>
+
+            <label for="show-all-notes" class="selector">Show all notes: </label>
+            <input type="checkbox" id="show-all-notes">
+
+            <label for="show-multiple-notes" class="selector">Show multiple notes: </label>
+            <input type="checkbox" id="show-multiple-notes">
+
+            <label for="select-notes" class="selector">Select notes: </label>
+            <input type="checkbox" id="select-notes">
+
+            <input type="button" value="Search Chord" id="search-chord" class="selector">
+            <input type="text" id="chord-display" value="guitar only" readonly>
+        </div>
+        <div class="fretboard" id = "fretboard"></div>
+        <div class ="note-name-section"></div>
+        <!-- link javaScript file -->
+        <script src = "./app.js"></script>
+    </body>
+</html>

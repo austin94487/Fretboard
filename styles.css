@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+
+/* variables */
+:root {
+    --fretboard-height: 300;
+    --num-strings: 6;
+    --string-height: 10;
+    --half-string-height: calc(var(--string-height) / 2);
+    --string-top-position: calc(var(--fretboard-height) / var(--num-strings) / 2 - var(--half-string-height));
+    --double-fretmark-position-1: calc(var(--fretboard-height) * 0.25);
+    --double-fretmark-position-2: calc(var(--fretboard-height) * 0.75);
+    --noteDotOpacity: 0;
+}
+
+/* '*' stands for 'all' */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* greyish color */
+    background: #353535;
+    font-family: Lato, sans-serif;
+}
+
+.settings {
+    display: flex;
+    color: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #444;
+    background: #282828;
+}
+
+.selector {
+    margin-left: 20px;
+}
+
+/* for chrome  */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+
+label {
+    margin-right: 3px;
+}
+
+
+#search-chord {
+    position: relative;
+    max-height: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Lato, sans-serif;
+}
+
+#chord-display {
+    margin-left: 5px;
+    max-height: 21px;
+    position: relative;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-family: Lato, sans-serif;
+}
+
+#select-notes {
+    margin-left: 3px;
+    position: relative;
+    top: 4px;
+}
+
+#show-all-notes {
+    margin-left: 3px;
+    position: relative;
+    top: 4px;
+}
+
+#show-multiple-notes {
+    margin-left: 3px;
+    position: relative;
+    top: 4px;
+}
+
+.fretboard {
+    display: flex;
+    flex-direction: column;     /* column for top to bottom instead of left to right */
+    background: #be975b url(./images/wood-pattern.png); /* wood color */
+    width: 100%;
+    min-width: 1500px;
+    height: calc(var(--fretboard-height) * 1px);
+    margin-top: 50px;
+}
+
+.string {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.string:before {
+    content: '';
+    width: 100%;
+    height: calc(var(--string-height) * 1px);; /* thickness of string */
+    background: linear-gradient(#eee, #999);
+    box-shadow: 76px 3px 10px #806233;
+    z-index: 1; /* to make sure the string is the top-most element */
+    position: absolute;
+    top: 22px;
+    top: calc(var(--string-top-position) * 1px);
+}
+
+.note-fret {
+    display: flex;
+    flex: 1; /* spaced evenly */
+    border-right: 10px solid; /* frets */
+    border-image: linear-gradient(to left, #777, #bbb, #777) 1 100%; /* gives fret metallic look */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 0th fret */
+.note-fret:first-child {
+    background: #161717;
+    min-width: 76px;
+    border-right: 12px solid;
+    /* assures same width for 0th fret */
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%; /* NUT */
+}
+
+.note-fret:before {
+    content: attr(data-note);
+    width: 33px;
+    height: 33px;
+    /* circle */
+    border-radius: 50%;
+    line-height: 33px;
+    text-align: center;
+    background: teal; /* color of notes, can change color */
+    z-index: 2;
+    color: #eee; /* color of actual text */
+    opacity: var(--noteDotOpacity);
+}
+
+.single-fretmark:after, .double-fretmark:before, .double-fretmark:after {
+    content: "";
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #806233;
+}
+
+.single-fretmark:after {
+    top: calc(var(--fretboard-height) / 2 * 1px);
+    transform: translate(0,-50%);
+}
+
+.double-fretmark:before {
+    top: calc(var(--double-fretmark-position-1) * 1px);
+    transform: translate(-120%, -50%)
+}
+
+.double-fretmark:after {
+    top: calc(var(--double-fretmark-position-2) * 1px);
+    transform: translate(-120%, -50%)
+}
+
+.note-name-section {
+    width: 100%;
+    color: #fff;
+    font-weight: 100;
+    font-size: 2.5em;
+    /* to center element:  */
+    display: flex;
+    justify-content: center;
+}
+
+.note-name-section span {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.note-name-section span:hover {
+    color: #00baba;
+}
