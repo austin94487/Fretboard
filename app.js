@@ -1,7 +1,3 @@
-// possible future ideas:
-// - add realistic string sizes (low E being thickest and high E being the smallest)
-// - add realistic fret sizes
-// - add sounds of notes and chords using howler or tonal js
 (function() {
     const root = document.documentElement;
     const fretboard = document.querySelector('.fretboard');
